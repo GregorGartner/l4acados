@@ -32,7 +32,7 @@ class ZeroOrderGPMPC(ResidualLearningMPC):
     def solve(self):
         for i in range(self.ocp_opts["nlp_solver_max_iter"]):
             self.preparation()
-            # status_cupd = self.do_custom_update()
+            status_cupd = self.do_custom_update()
             status_feed = self.feedback()
 
             # ------------------- Check termination --------------------
@@ -106,7 +106,7 @@ class ZeroOrderGPMPC(ResidualLearningMPC):
                 self.zoro_input_P0,
                 self.zoro_input_W_diag,
                 # self.residual_model.current_variance is updated with value_and_jacobian() call in preparation phase
-                self.residual_model.current_variance.flatten(),
+                # self.residual_model.current_variance.flatten(),
             )
         )
         covariances_in_len = covariances_in.size
