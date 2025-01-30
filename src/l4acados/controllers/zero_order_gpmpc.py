@@ -105,8 +105,8 @@ class ZeroOrderGPMPC(ResidualLearningMPC):
             (
                 self.zoro_input_P0,
                 self.zoro_input_W_diag,
-                # self.residual_model.current_variance is updated with value_and_jacobian() call in preparation phase
-                # self.residual_model.current_variance.flatten(),
+                self.residual_model.current_variance is updated with value_and_jacobian() call in preparation phase
+                self.residual_model.current_variance.flatten(),
             )
         )
         covariances_in_len = covariances_in.size
