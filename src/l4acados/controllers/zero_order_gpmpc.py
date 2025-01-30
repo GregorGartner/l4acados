@@ -32,7 +32,7 @@ class ZeroOrderGPMPC(ResidualLearningMPC):
     def solve(self):
         for i in range(self.ocp_opts["nlp_solver_max_iter"]):
             self.preparation()
-            status_cupd = self.do_custom_update()
+            # status_cupd = self.do_custom_update()
             status_feed = self.feedback()
 
             # ------------------- Check termination --------------------
