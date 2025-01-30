@@ -43,7 +43,7 @@ class GPyTorchResidualModel(PyTorchResidualModel):
     def evaluate(self, y, require_grad=False):
         # NOTE(@naefjo): covar_root_decomposition=False forces linear_operator to use cholesky.
         # This is needed as otherwise our approach falls apart.
-        with gpytorch.settings.fast_pred_var(), gpytorch.settings.skip_posterior_variances(True), gpytorch.settings.fast_computations(
+        with gpytorch.settings.fast_pred_var(), gpytorch.settings.skip_posterior_variances(state=True), gpytorch.settings.fast_computations(
             covar_root_decomposition=False
         ):
             
@@ -62,7 +62,7 @@ class GPyTorchResidualModel(PyTorchResidualModel):
         # NOTE(@naefjo): If we skipped posterior covariances, we keep the old covars in cache for hewing method.
         # if gpytorch.settings.skip_posterior_variances.off():
         #     print("Hello")
-        #     self.current_variance = np.zeros((9,1)); # self.to_numpy(self.predictions.variance)
+        #     self.current_variance = self.to_numpy(self.predictions.variance)
 
         return self.current_prediction
 
