@@ -60,9 +60,9 @@ class GPyTorchResidualModel(PyTorchResidualModel):
         self.current_mean = self.current_prediction
 
         # NOTE(@naefjo): If we skipped posterior covariances, we keep the old covars in cache for hewing method.
-        # if gpytorch.settings.skip_posterior_variances.off():
-        #     print("Hello")
-        #     self.current_variance = self.to_numpy(self.predictions.variance)
+        if gpytorch.settings.skip_posterior_variances.off():
+            print("Hello")
+            self.current_variance = self.to_numpy(self.predictions.variance)
 
         return self.current_prediction
 
