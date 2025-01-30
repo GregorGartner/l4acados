@@ -43,9 +43,11 @@ class GPyTorchResidualModel(PyTorchResidualModel):
     def evaluate(self, y, require_grad=False):
         # NOTE(@naefjo): covar_root_decomposition=False forces linear_operator to use cholesky.
         # This is needed as otherwise our approach falls apart.
-        with gpytorch.settings.fast_pred_var(), gpytorch.settings.skip_posterior_variances(), gpytorch.settings.fast_computations(
+        with gpytorch.settings.fast_pred_var(), gpytorch.settings.fast_computations(
             covar_root_decomposition=False
         ):
+            gpytorch.settings.skip_posterior_variances()
+            
             y_tensor = self.to_tensor(y)
             if require_grad:
                 self.predictions = self.gp_model(self._feature_selector(y_tensor))
