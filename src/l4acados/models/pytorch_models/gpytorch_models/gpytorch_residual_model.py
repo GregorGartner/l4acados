@@ -61,7 +61,7 @@ class GPyTorchResidualModel(PyTorchResidualModel):
 
         # NOTE(@naefjo): If we skipped posterior covariances, we keep the old covars in cache for hewing method.
         if gpytorch.settings.skip_posterior_variances.off():
-            print("Hello")
+            print(gpytorch.settings.skip_posterior_variances.off())
             self.current_variance = self.to_numpy(self.predictions.variance)
 
         return self.current_prediction
