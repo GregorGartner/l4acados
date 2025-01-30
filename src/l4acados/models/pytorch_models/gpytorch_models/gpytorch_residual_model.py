@@ -45,8 +45,7 @@ class GPyTorchResidualModel(PyTorchResidualModel):
         # This is needed as otherwise our approach falls apart.
         with gpytorch.settings.fast_pred_var(), gpytorch.settings.fast_computations(
             covar_root_decomposition=False
-        ):
-            gpytorch.settings.skip_posterior_variances()
+        ), gpytorch.settings.skip_posterior_variances(True):
             
             y_tensor = self.to_tensor(y)
             if require_grad:
